@@ -2,7 +2,7 @@ const fs = require('fs');
 
 module.exports = function (fileName, numLines = 10, done) {
   fs.readFile(fileName, 'utf8', (err, data) => {
-    let lines = Math.abs(parseInt(numLines));
+    let lines = parseInt(numLines);
     if (err) {
       done('Something went wrong!');
     } else {
@@ -10,7 +10,7 @@ module.exports = function (fileName, numLines = 10, done) {
       if (arr.length < numLines) {
         done(arr);
       } else {
-        let outArr = arr.splice(0, lines);
+        let outArr = arr.splice(lines - 1);
         done(outArr.join('\n'));
       }
     }
